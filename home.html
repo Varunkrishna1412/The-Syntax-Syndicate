@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Risk Evaluation</title>
+    <style>
+        /* Your existing CSS goes here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Credit Risk Evaluation</h1>
+            <p>Please fill in the details below.</p>
+        </header>
+
+        <!-- Personal Info Section -->
+        <section>
+            <h2>Personal Details</h2>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <!-- Add other personal details fields here -->
+        </section>
+
+        <!-- Loan Information Section -->
+        <section>
+            <h2>Loan Information</h2>
+            <div class="form-group">
+                <label for="loanAmount">Loan Amount</label>
+                <input type="number" id="loanAmount" name="loanAmount" placeholder="Enter loan amount">
+            </div>
+            <!-- Add other loan-related fields here -->
+        </section>
+
+        <!-- Upload Section -->
+        <section>
+            <h2>Upload Documents</h2>
+            <div class="form-group">
+                <label for="bankStatement">Upload Bank Statement (Template)</label>
+                <input type="file" id="bankStatement" name="bankStatement">
+            </div>
+            <div class="form-group">
+                <label for="otherDocuments">Upload Other Supporting Documents</label>
+                <input type="file" id="otherDocuments" name="otherDocuments">
+            </div>
+        </section>
+
+        <div class="form-group">
+            <button type="submit" id="submitForm">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        // Frontend form submission using JavaScript
+        document.getElementById('submitForm').addEventListener('click', function() {
+            const formData = new FormData();
+
+            formData.append('name', document.getElementById('name').value);
+            formData.append('gender', document.getElementById('gender').value);
+            formData.append('loanAmount', document.getElementById('loanAmount').value);
+            formData.append('bankStatement', document.getElementById('bankStatement').files[0]);
+            formData.append('otherDocuments', document.getElementById('otherDocuments').files[0]);
+            
+            // Send the form data to the backend
+            fetch('/api/submit_credit_risk', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Form submitted successfully!");
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Risk Evaluation</title>
+    <style>
+        /* Your existing CSS goes here */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Credit Risk Evaluation</h1>
+            <p>Please fill in the details below.</p>
+        </header>
+
+        <!-- Personal Info Section -->
+        <section>
+            <h2>Personal Details</h2>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <!-- Add other personal details fields here -->
+        </section>
+
+        <!-- Loan Information Section -->
+        <section>
+            <h2>Loan Information</h2>
+            <div class="form-group">
+                <label for="loanAmount">Loan Amount</label>
+                <input type="number" id="loanAmount" name="loanAmount" placeholder="Enter loan amount">
+            </div>
+            <!-- Add other loan-related fields here -->
+        </section>
+
+        <!-- Upload Section -->
+        <section>
+            <h2>Upload Documents</h2>
+            <div class="form-group">
+                <label for="bankStatement">Upload Bank Statement (Template)</label>
+                <input type="file" id="bankStatement" name="bankStatement">
+            </div>
+            <div class="form-group">
+                <label for="otherDocuments">Upload Other Supporting Documents</label>
+                <input type="file" id="otherDocuments" name="otherDocuments">
+            </div>
+        </section>
+
+        <div class="form-group">
+            <button type="submit" id="submitForm">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        // Frontend form submission using JavaScript
+        document.getElementById('submitForm').addEventListener('click', function() {
+            const formData = new FormData();
+
+            formData.append('name', document.getElementById('name').value);
+            formData.append('gender', document.getElementById('gender').value);
+            formData.append('loanAmount', document.getElementById('loanAmount').value);
+            formData.append('bankStatement', document.getElementById('bankStatement').files[0]);
+            formData.append('otherDocuments', document.getElementById('otherDocuments').files[0]);
+            
+            // Send the form data to the backend
+            fetch('/api/submit_credit_risk', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Form submitted successfully!");
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

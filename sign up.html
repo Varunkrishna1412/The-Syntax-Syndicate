@@ -1,0 +1,299 @@
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Amrita Job Agency Website - Sign Up</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+  <style>
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+.bg-img{
+  background: url(assets/images/bg.png);
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.bg-img:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+}
+.content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+  text-align: center;
+  padding: 60px 32px;
+  width: 370px;
+  transform: translate(-50%,-50%);
+  background: rgba(255,255,255,0.04);
+  box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+}
+.content header{
+  color: white;
+  font-size: 33px;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  font-family: 'Montserrat',sans-serif;
+}
+.field{
+  position: relative;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  background: rgba(255,255,255,0.94);
+}
+.field span{
+  color: #222;
+  width: 40px;
+  line-height: 45px;
+}
+.field input{
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #222;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.space{
+  margin-top: 16px;
+}
+.show{
+  position: absolute;
+  right: 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #222;
+  display: none;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.pass-key:valid ~ .show{
+  display: block;
+}
+.pass{
+  text-align: left;
+  margin: 10px 0;
+}
+.pass a{
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins',sans-serif;
+}
+.pass:hover a{
+  text-decoration: underline;
+}
+.field input[type="submit"]{
+  background: #3498db;
+  border: 1px solid #2691d9;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.field input[type="submit"]:hover{
+  background: #2691d9;
+}
+.login{
+  color: white;
+  margin: 20px 0;
+  font-family: 'Poppins',sans-serif;
+}
+.links{
+  display: flex;
+  cursor: pointer;
+  color: white;
+  margin: 0 0 20px 0;
+}
+.facebook,.instagram{
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  margin-left: 10px;
+}
+.facebook{
+  margin-left: 0;
+  background: #CBD3FC;
+  border: 1px solid #3e61a8;
+  color:white
+}
+.instagram{
+  background: #E1306C;
+  border: 1px solid #df2060;
+}
+.facebook:hover{
+  background: #3e61a8;
+}
+.instagram:hover{
+  background: #df2060;
+}
+.links i{
+  font-size: 17px;
+}
+i span{
+  margin-left: 8px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.signup{
+  font-size: 15px;
+  color: white;
+  font-family: 'Poppins',sans-serif;
+}
+.login a{
+  color: #3498db;
+  text-decoration: none;
+}
+.login a:hover{
+  text-decoration: underline;
+}
+   button {
+       background: #3498db;
+  border: 1px solid #2691d9;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+ padding: 8px 105px;;
+    }
+    button:hover {
+      background: #2691d9;
+	  }
+@media only screen and (max-width: 480px) {
+  .content {
+    width: 90%;
+    padding: 30px 16px;
+  }
+
+  .field {
+    height: 50px;
+  }
+
+  .field input[type="submit"] {
+    padding: 10px 40px;
+    font-size: 16px;
+  }
+
+  .login {
+    margin: 10px 0;
+  }
+
+  .links {
+    margin: 0 0 10px 0;
+  }
+
+  .signup {
+    font-size: 14px;
+  }
+
+  button {
+    padding: 8px 40px;
+    font-size: 16px;
+  }
+}
+  </style>
+</head>
+<body>
+<div class="bg-img">
+    <div class="content">
+      <header>Sign Up Form</header>
+      <form id="signupForm" action="signup_process.php" method="post">
+        <div class="field">
+          <span class="fa fa-user"></span>
+          <input id="fullNameInput" type="text" required placeholder="Full Name">
+        </div>
+		<br>
+        <div class="field">
+          <span class="fa fa-envelope"></span>
+          <input id="emailInput" type="email" required placeholder="Email">
+        </div><br>
+        <div class="field">
+          <span class="fa fa-lock"></span>
+          <input id="passwordInput" type="password" class="pass-key" required placeholder="Password">
+          <span class="show">SHOW</span>
+        </div>
+        <div class="field space">
+          <span class="fa fa-lock"></span>
+          <input id="confirmPasswordInput" type="password" class="pass-key" required placeholder="Confirm Password">
+          <span class="show">SHOW</span>
+        </div><br>
+        <button id="signupButton" type="button" class="signup-button" onclick="signup()">SIGN UP</button>
+      </form>
+      <div class="login">
+        Already have an account? <a href="login page.html">Login</a>
+      </div>
+	  <div class="login">
+        Or login with
+      </div>
+<div class="links">
+                         <button type="button" onclick="google()">Google</button>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+  	  	   function google() {
+    window.location.href = "home.html";
+  }
+function signup() {
+  var fullName = document.getElementById("fullNameInput").value;
+  var email = document.getElementById("emailInput").value;
+  var password = document.getElementById("passwordInput").value;
+  var confirmPassword = document.getElementById("confirmPasswordInput").value;
+
+  if (fullName.trim() === "") {
+    alert("Please enter your full name.");
+    return;
+  }
+
+  if (!validateEmail(email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  if (password.trim() === "") {
+    alert("Please enter a password.");
+    return;
+  }
+
+  if (confirmPassword.trim() === "") {
+    alert("Please confirm your password.");
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match.");
+    return;
+  }
+
+  alert("Sign up successful!");
+  window.location.href = "login.html";
+}
+
+function validateEmail(email) {
+  const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+  </script>
+</body>
+</html>
