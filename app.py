@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from werkzeug.utils import secure_filename
 import os
 import pandas as pd
-from werkzeug.utils import secure_filename
+import joblib
+from sklearn.preprocessing import StandardScaler
 
-app = Flask(__name__)
+app = Flask(_name_)
 
 # Define the upload folder for documents
 UPLOAD_FOLDER = './uploads'
@@ -16,43 +18,42 @@ ALLOWED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png', 'txt'}
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+# Load your trained model
+model = joblib.load('loan_model.pkl')  # Assuming the model is saved in 'loan_model.pkl'
+
+# Preprocessing function (e.g., normalization, encoding)
+def preprocess_data(data):
+    # For simplicity, let's assume data is already processed
+    # You can add preprocessing steps like encoding, scaling here
+    scaler = StandardScaler()
+    return scaler.fit_transform([data])
+
+# Define the route for submitting credit risk data
 @app.route('/api/submit_credit_risk', methods=['POST'])
 def submit_credit_risk():
     try:
         # Extract form data
         name = request.form.get('name')
-        gender = request.form.get('gender')
-        loan_amount = request.form.get('loanAmount')
+        loan_amount = float(request.form.get('loanAmount'))
+        num_credit_lines = int(request.form.get('numOfCreditLines', 0))  # Default to 0 if not provided
+        credit_utilization = float(request.form.get('creditUtilization', 0.0))  # Default to 0 if not provided
+
+        # Example: Data collection for prediction
+        input_data = [loan_amount, num_credit_lines, credit_utilization]
         
-        # Extract uploaded files
-        bank_statement = request.files['bankStatement']
-        other_documents = request.files['otherDocuments']
+        # Preprocess the data (e.g., scale it)
+        processed_data = preprocess_data(input_data)
         
-        # Ensure files have valid extensions
-        if bank_statement and allowed_file(bank_statement.filename):
-            bank_statement_filename = secure_filename(bank_statement.filename)
-            bank_statement.save(os.path.join(app.config['UPLOAD_FOLDER'], bank_statement_filename))
+        # Make the prediction
+        prediction = model.predict(processed_data)
         
-        if other_documents and allowed_file(other_documents.filename):
-            other_documents_filename = secure_filename(other_documents.filename)
-            other_documents.save(os.path.join(app.config['UPLOAD_FOLDER'], other_documents_filename))
+        # Determine the result
+        result = "Loan Approved" if prediction == 1 else "Loan Denied"
         
-        # Process the data and run the model here (use your existing backend code)
-        # For example, create a DataFrame with the collected data
-        data = {
-            'name': name,
-            'gender': gender,
-            'loan_amount': loan_amount,
-            'bank_statement': bank_statement_filename,
-            'other_documents': other_documents_filename
-        }
-        
-        # You can perform credit risk prediction or other tasks here
-        # For now, just returning the data for testing
+        # Return the result to the frontend
         return jsonify({
             'status': 'success',
-            'message': 'Form submitted successfully!',
-            'data': data
+            'message': result
         }), 200
         
     except Exception as e:
@@ -61,5 +62,5 @@ def submit_credit_risk():
             'message': str(e)
         }), 400
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     app.run(debug=True)
